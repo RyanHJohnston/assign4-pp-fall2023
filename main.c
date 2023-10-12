@@ -86,8 +86,9 @@ matrix_multiply(int A[MATRIX_SIZE][MATRIX_SIZE],
         int B[MATRIX_SIZE][MATRIX_SIZE], 
         int C[MATRIX_SIZE][MATRIX_SIZE]) 
 {
+    int i;
     #pragma omp parallel for
-    for (int i = 0; i < MATRIX_SIZE; i++) {
+    for (i = 0; i < MATRIX_SIZE; i++) {
         for (int j = 0; j < MATRIX_SIZE; j++) {
             C[i][j] = 0;  // Initialize the resultant matrix element to 0
             for (int k = 0; k < MATRIX_SIZE; k++) {
