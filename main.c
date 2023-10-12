@@ -87,11 +87,13 @@ matrix_multiply(int A[MATRIX_SIZE][MATRIX_SIZE],
         int C[MATRIX_SIZE][MATRIX_SIZE]) 
 {
     int i;
+    int j;
+    int k;
     #pragma omp parallel for
     for (i = 0; i < MATRIX_SIZE; i++) {
-        for (int j = 0; j < MATRIX_SIZE; j++) {
+        for (j = 0; j < MATRIX_SIZE; j++) {
             C[i][j] = 0;  // Initialize the resultant matrix element to 0
-            for (int k = 0; k < MATRIX_SIZE; k++) {
+            for (k = 0; k < MATRIX_SIZE; k++) {
                 C[i][j] += A[i][k] * B[k][j];
             }
         }
