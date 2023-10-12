@@ -1,3 +1,0 @@
-1. Read Chapter 3.  Review OpenMP/PThreads slides and try out demo programs.
-
-2. Implement OpenMP and PThreads programs to multiply matrices - see the attachment. 
