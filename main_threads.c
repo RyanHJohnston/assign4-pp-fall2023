@@ -24,9 +24,6 @@ void *matrix_multiply_threads(void *arg);
 int
 main(int argc, char *argv[])
 {
-    /* mulitiply two n by n martrices using p processors 1 <= p <= 12 */
-    /* fill up matrices with some constant values to verify correctness */
-    
     int i;
     int j;
     int k;
@@ -56,7 +53,6 @@ main(int argc, char *argv[])
         }
     }
     
-    /* work of each thread is defined */
     data[0].start_row = 0;
     data[0].end_row = MATRIX_SIZE / 2;
     data[1].start_row = MATRIX_SIZE / 2;
@@ -64,12 +60,10 @@ main(int argc, char *argv[])
 
     clock_gettime(CLOCK_MONOTONIC, &start);
 
-    /* create threads */
     for (i = 0; i < NUM_THREADS; ++i) {
         pthread_create(&threads[i], NULL, matrix_multiply_threads, &data[i]);
     }
 
-    /* wait for threads to finish */
     for (i = 0; i < NUM_THREADS; ++i) {
         pthread_join(threads[i], NULL);
     }
@@ -79,11 +73,10 @@ main(int argc, char *argv[])
     cpu_time_used = end.tv_sec - start.tv_sec;
     cpu_time_used += (end.tv_nsec - start.tv_nsec) / 1000000000.0;
 
-    /* write times to pp_time.txt */
     FILE *fp;
-    fp = fopen("pp_time.txt", "a");
+    fp = fopen("thread_times.txt", "a");
     if (fp == NULL) {
-        fprintf(stderr, "File %s failed to open\n", "pp_time.txt");
+        fprintf(stderr, "File %s failed to open\n", "thread_times.txt");
         exit(EXIT_FAILURE);
     }
     
